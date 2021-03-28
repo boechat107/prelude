@@ -25,3 +25,6 @@
 ;; Better folding shortcut.
 (require 'hideshow)
 (define-key evil-normal-state-map (kbd "zm") 'hs-hide-level)
+(define-key evil-normal-state-map (kbd "zM") 'hs-hide-all)
+
+(provide 'personal-evil)
