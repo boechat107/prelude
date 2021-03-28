@@ -1,14 +1,14 @@
 (require 'prelude-programming)
 
 (prelude-require-packages '(fsharp-mode eglot-fsharp))
+
 (require 'fsharp-mode)
+(setq inferior-fsharp-program "dotnet fsi --readline-")
+
 ;; WARNING: I couldn't make "eglot-fsharp" work out-of-box. I had to
 ;; manually download "FsAutoComplete" and move to a directory
 ;; structure similar to the one automatically created by "eglot-fsharp".
 (require 'eglot-fsharp)
-
-;; Activate "fsharp-mode" for files with ".fs" extension.
-(add-to-list 'auto-mode-alist '("\\.fs\\'" . fsharp-mode))
 
 ;; ------------------
 ;; Formatting functions
