@@ -36,7 +36,6 @@
  '(rustic-ansi-faces
    ["#1d1f21" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#c9b4cf" "#8abeb7" "#c5c8c6"])
  '(size-indication-mode t)
- '(super-save-mode nil)
  '(tool-bar-mode nil)
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
