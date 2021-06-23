@@ -1,4 +1,4 @@
-(prelude-require-package 'org-bullets)
+(prelude-require-packages '(org-bullets org-preview-html))
 (require 'org-bullets)
 (require 'evil)
 
@@ -6,6 +6,7 @@
   (defun personal-org-mode-defaults ()
     (org-bullets-mode +1)
     (smartparens-mode +1)
+    (whitespace-mode -1)
 
     (evil-define-key 'normal org-mode-map
       "zk" 'org-previous-visible-heading
