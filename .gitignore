@@ -32,3 +32,6 @@ var/
 
 FsAutoComplete/
 anaconda-mode/
+
+# Org-drill
+persist/
