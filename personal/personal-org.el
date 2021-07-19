@@ -1,7 +1,8 @@
 (prelude-require-packages '(org-bullets
                             org-preview-html
                             yasnippet
-                            yasnippet-snippets))
+                            yasnippet-snippets
+                            org-drill))
 
 (with-eval-after-load 'org
   (defun personal-org-mode-defaults ()
