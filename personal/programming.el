@@ -1,13 +1,17 @@
-;; Disable auto-saving features
-(setq auto-save-default nil)
-(require 'super-save)
-(super-save-mode -1)
+(require 'prelude-programming)
 
 ;; Similar to vim-illuminate
 (prelude-require-packages '(idle-highlight-mode))
-(add-hook 'prelude-prog-mode-hook 'idle-highlight-mode)
 
-;; Treat "_" as part of words.
-;; https://evil.readthedocs.io/en/latest/faq.html#underscore-is-not-a-word-character
-(add-hook 'prelude-prog-mode-hook
-          (lambda () (modify-syntax-entry ?_ "w")))
+(defun personal-prog-mode-defaults ()
+  ;; Disable auto-saving features
+  (setq auto-save-default nil)
+  (require 'super-save)
+  (super-save-mode -1)
+
+  (idle-highlight-mode +1)
+  ;; Treat "_" as part of words.
+  ;; https://evil.readthedocs.io/en/latest/faq.html#underscore-is-not-a-word-character
+  (modify-syntax-entry ?_ "w"))
+
+(add-hook 'prelude-prog-mode-hook 'personal-prog-mode-defaults)
