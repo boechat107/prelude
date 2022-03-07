@@ -10,3 +10,6 @@
   (hs-minor-mode +1))
 
 (add-hook 'python-mode-hook 'personal-python-mode-defaults)
+;; Enables function signature in the echo area.
+;; https://github.com/pythonic-emacs/anaconda-mode#eldoc
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
