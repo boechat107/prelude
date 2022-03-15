@@ -7,7 +7,12 @@
 
 (defun personal-python-mode-defaults ()
   (pyvenv-mode +1)
-  (hs-minor-mode +1))
+  (hs-minor-mode +1)
+  ;; We can jump back to the code using the definition.
+  ;; Ref.: https://github.com/emacs-evil/evil/issues/1354
+  (evil-set-command-property 'anaconda-mode-find-definitions :jump t)
+  (evil-set-command-property 'anaconda-mode-find-assignments :jump t)
+  (message "Personal Python default fn executed"))
 
 (add-hook 'python-mode-hook 'personal-python-mode-defaults)
 ;; Enables function signature in the echo area.
