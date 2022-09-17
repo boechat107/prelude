@@ -1,4 +1,4 @@
-(prelude-require-packages '(key-chord))
+(prelude-require-packages '(key-chord origami))
 (require 'key-chord)
 (require 'evil)
 
