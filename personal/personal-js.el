@@ -7,6 +7,7 @@
             (require 'nodejs-repl)
             (subword-mode -1)
             (hs-minor-mode +1)
+            (custom-set-variables '(js2-strict-missing-semi-warning nil))
             (message "Loaded personal JS config")))
 (add-hook 'nodejs-repl-mode-hook
           (lambda ()

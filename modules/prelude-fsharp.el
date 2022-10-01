@@ -36,7 +36,10 @@
     ;; Unix-like systems.
     ;; https://github.com/fsharp/emacs-fsharp-mode#compiler-and-repl-paths
     (setq inferior-fsharp-program "dotnet fsi --readline-")
-    (require 'eglot-sharp))
+    ;; TODO: is this working??
+    (message "Before loading eglot-sharp")
+    (require 'eglot-sharp)
+    (message "After loading eglot-sharp"))
 
   (setq prelude-fsharp-mode-hook 'prelude-fsharp-mode-defaults)
 

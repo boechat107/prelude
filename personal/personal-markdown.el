@@ -1,4 +1,3 @@
-(require 'markdown-mode)
 (require 'evil)
 
 (with-eval-after-load 'markdown-mode
@@ -10,4 +9,4 @@
       ",b" 'markdown-insert-bold
       ",i" 'markdown-insert-italic))
 
-  (add-hook 'markdown-mode-hook 'personal-gfm-mode-defaults))
+  (add-hook 'markdown-mode-hook 'personal-gfm-mode-defaults 1))
