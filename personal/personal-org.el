@@ -2,7 +2,9 @@
                             org-preview-html
                             yasnippet
                             yasnippet-snippets
-                            org-drill))
+                            org-drill
+                            ;; Syntax highlight for HTML export.
+                            htmlize))
 
 (defun personal-org-mode-defaults ()
   ;; (setq truncate-lines nil)
