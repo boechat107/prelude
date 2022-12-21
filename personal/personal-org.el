@@ -4,7 +4,9 @@
                             yasnippet-snippets
                             org-drill
                             ;; Syntax highlight for HTML export.
-                            htmlize))
+                            htmlize
+                            ;; Support to mermaid diagrams.
+                            ob-mermaid))
 
 (defun personal-org-mode-defaults ()
   ;; (setq truncate-lines nil)
@@ -18,6 +20,12 @@
   (org-bullets-mode +1)
 
   (smartparens-mode +1)
+
+  ;; Always set the path to the binary "mmdc".
+  (setq ob-mermaid-cli-path "")
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((mermaid . t)))
 
   (require 'evil)
   (evil-define-key 'normal org-mode-map
