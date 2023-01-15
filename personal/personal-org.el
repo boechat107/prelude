@@ -6,9 +6,12 @@
                             ;; Syntax highlight for HTML export.
                             htmlize
                             ;; Support to mermaid diagrams.
-                            ob-mermaid))
+                            ob-mermaid
+                            ;; Additional evil keybindings for org mode.
+                            evil-org))
 
 (defun personal-org-mode-defaults ()
+  (evil-org-mode +1)
   ;; (setq truncate-lines nil)
   (visual-line-mode +1)
 
