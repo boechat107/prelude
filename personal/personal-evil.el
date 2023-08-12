@@ -1,16 +1,27 @@
-(prelude-require-packages '(key-chord origami))
+(prelude-require-packages '(quelpa evil-collection origami))
+
+;; The latest version of "key-chord" produced constant failures. This is
+;; reported in this issue:
+;; https://github.com/emacsorphanage/key-chord/issues/6.
+;; I found that "quelpa" allows version pinning. I'm pinning here the latest
+;; working version of "key-chord".
+(quelpa
+  '(key-chord
+   :fetcher github
+   :repo "emacsorphanage/key-chord"
+   :commit "68264d09593e69c1d4773859ac570bd9feb008d9"))
+
 (require 'key-chord)
 (require 'evil)
 
-(key-chord-mode 1)
 ;; Alternative escape key definition.
 (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-mode +1)
 
 ;; Makes the "redo" system work.
 (evil-set-undo-system 'undo-tree)
 
 ;; Collection of "evil" configurations.
-(prelude-require-packages '(evil-collection))
 (evil-collection-init)
 
 ;; Makes it similar to easymotion on Vim.
