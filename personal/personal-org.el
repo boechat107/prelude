@@ -41,9 +41,11 @@
   (require 'evil)
   (evil-define-key 'normal org-mode-map
     "zk" 'org-previous-visible-heading
-    "zj" 'org-next-visible-heading))
+    "zj" 'org-next-visible-heading)
 
-(add-hook 'whitespace-mode-hook
-          (lambda ()
-            (setq whitespace-style '(face tabs empty trailing))))
-(add-hook 'org-mode-hook #'personal-org-mode-defaults)
+  (require 'whitespace)
+  ;; We disable the highlight of long text lines, but only for Org files.
+  (make-local-variable 'whitespace-line-column)
+  (setq whitespace-line-column -1))
+
+(add-hook 'org-mode-hook 'personal-org-mode-defaults)
