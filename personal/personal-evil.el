@@ -1,4 +1,4 @@
-(prelude-require-packages '(evil-collection origami))
+(prelude-require-packages '(evil-collection origami jinx))
 
 ;; The latest version of "key-chord" produced constant failures. This is
 ;; reported in this issue:
@@ -32,6 +32,10 @@
 
 (evil-define-key 'insert 'global
   (kbd "C-x C-f") 'company-files)
+
+(require 'jinx)
+(evil-define-key 'normal 'jinx-mode-map
+  "z=" 'jinx-correct-word)
 
 ;; Better folding shortcut.
 (require 'hideshow)
