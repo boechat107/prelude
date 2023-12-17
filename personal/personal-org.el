@@ -11,6 +11,14 @@
                             evil-org))
 
 (defun personal-org-mode-defaults ()
+  ;; The following function can be used in table formula to convert values to
+  ;; different units.
+  ;; Reference:
+  ;; https://emacs.stackexchange.com/a/46228/31688
+  (defmath uconvert (v u)
+    "Convert value V to compatible unit U."
+    (math-convert-units v u))
+
   (evil-org-mode +1)
   ;; (setq truncate-lines nil)
   (visual-line-mode +1)
