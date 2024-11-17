@@ -1,4 +1,4 @@
-(prelude-require-packages '(quelpa jinx))
+(prelude-require-packages '(quelpa jinx perspective))
 
 ;; Optimizations suggested in the following discussion:
 ;; https://emacs.stackexchange.com/questions/12086/high-cpu-memory-usage-and-abnormally-large-savehist-file
@@ -20,7 +20,6 @@
 ;; Better spell checking.
 ;; Some keyboard shortcuts are defined in "personal/evil.el".
 (defun personal-jinx-mode-defaults ()
-  (message "My jinx config")
   (setq jinx-languages "en_US pt_BR"))
 
 (add-hook 'jinx-mode-hook 'personal-jinx-mode-defaults)
@@ -42,3 +41,14 @@
   ;; "append" adds the new command after `-b'.
   (transient-append-suffix 'magit-diff-refresh "-b"
     '("-e" "Ignore space at EOL" ("" "--ignore-space-at-eol"))))
+
+(use-package perspective
+  :bind
+  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
+  :custom
+  (persp-mode-prefix-key (kbd "C-x x"))  ; pick your own prefix key here
+  (setq persp-state-default-file "~/Code/perspective.el")
+  :init
+  (persp-mode)
+  :config
+  (add-hook 'kill-emacs-hook #'persp-state-save))
