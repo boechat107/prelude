@@ -3,6 +3,8 @@
 (prelude-require-packages
  '(;; Similar to vim-illuminate
    idle-highlight-mode
+   ;; Generate links to the repository from a buffer.
+   git-link
    quelpa
    ;; Required by copilot.
    editorconfig))
