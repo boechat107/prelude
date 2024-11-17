@@ -1,7 +1,18 @@
 (require 'prelude-programming)
 
-;; Similar to vim-illuminate
-(prelude-require-packages '(idle-highlight-mode))
+(prelude-require-packages
+ '(;; Similar to vim-illuminate
+   idle-highlight-mode
+   quelpa
+   ;; Required by copilot.
+   editorconfig))
+
+(quelpa
+ '(copilot :fetcher github
+           :repo "zerolfx/copilot.el"
+           :branch "main"
+           :files ("dist" "*.el")))
+
 
 (defun personal-prog-mode-defaults ()
   ;; Disable auto-saving features
@@ -14,6 +25,11 @@
   (idle-highlight-mode +1)
   ;; Treat "_" as part of words.
   ;; https://evil.readthedocs.io/en/latest/faq.html#underscore-is-not-a-word-character
-  (modify-syntax-entry ?_ "w"))
+  (modify-syntax-entry ?_ "w")
+  ;; Copilot configurations.
+  (define-key copilot-completion-map (kbd "<backtab>")
+              'copilot-accept-completion)
+  (define-key copilot-completion-map (kbd "C-x TAB")
+              'copilot-accept-completion-by-word))
 
 (add-hook 'prelude-prog-mode-hook 'personal-prog-mode-defaults)
