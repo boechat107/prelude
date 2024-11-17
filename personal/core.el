@@ -1,7 +1,17 @@
-(prelude-require-packages '(quelpa beacon jinx))
+(prelude-require-packages '(quelpa jinx))
 
-;; Highlight the cursor whenever the window scrolls.
-(beacon-mode +1)
+;; Optimizations suggested in the following discussion:
+;; https://emacs.stackexchange.com/questions/12086/high-cpu-memory-usage-and-abnormally-large-savehist-file
+;; I was experience a similar problem. The profiling report showed a significant
+;; CPU consumption by savehist.
+(setq history-length 100)
+(put 'minibuffer-history 'history-length 50)
+(put 'evil-ex-history 'history-length 50)
+(put 'kill-ring 'history-length 25)
+
+;; Flyspell also takes a lot of CPU cycles.
+;; Suggestion from its homepage: https://www.emacswiki.org/emacs/FlySpell#h5o-4
+(setq flyspell-issue-message-flag nil)
 
 ;; We don't let Emacs kill old buffers before 10 days (the original value is
 ;; 3).
