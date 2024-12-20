@@ -42,12 +42,15 @@
   (transient-append-suffix 'magit-diff-refresh "-b"
     '("-e" "Ignore space at EOL" ("" "--ignore-space-at-eol"))))
 
+;; Sets the line width globally.
+(setq-default fill-column 80)
+
 (use-package perspective
   :bind
   ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
   :custom
   (persp-mode-prefix-key (kbd "C-x x"))  ; pick your own prefix key here
-  (setq persp-state-default-file "~/Code/perspective.el")
+  (persp-state-default-file "~/Code/perspective.el")
   :init
   (persp-mode)
   :config
