@@ -8,7 +8,12 @@
                             ;; Support to mermaid diagrams.
                             ob-mermaid
                             ;; Additional evil keybindings for org mode.
-                            evil-org))
+                            evil-org
+                            org-journal))
+
+;; This needs to be set before loading Org files.
+(setq org-todo-keywords
+        '((sequence "TODO" "DOING" "|" "REVIEW" "DONE")))
 
 (defun personal-org-mode-defaults ()
   ;; The following function can be used in table formula to convert values to
@@ -36,7 +41,9 @@
   (setq ob-mermaid-cli-path "")
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((mermaid . t)))
+   '((mermaid . t)
+     (sql . t)
+     (clojure . t)))
 
   ;; These settings are useful to produce Latex previews inside orgmode
   ;; documents. The first is a requirement; the second is optional.
@@ -54,6 +61,10 @@
   (require 'whitespace)
   ;; We disable the highlight of long text lines, but only for Org files.
   (make-local-variable 'whitespace-line-column)
-  (setq whitespace-line-column -1))
+  (setq whitespace-line-column -1)
+
+  (require 'org-journal)
+  (setq org-journal-file-type 'monthly)
+  (setq org-journal-dir "~/Code/OpenSource/org-notes/journal/"))
 
 (add-hook 'org-mode-hook 'personal-org-mode-defaults)
