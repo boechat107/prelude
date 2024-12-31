@@ -37,3 +37,7 @@ anaconda-mode/
 
 # Org-drill
 persist/
+org-persist/
+
+*.orig
+quelpa/
