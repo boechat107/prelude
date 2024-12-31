@@ -55,7 +55,14 @@ installments."
 
   (defun personal-ledger-mode-defaults ()
     "Default configuration for ledger-mode."
-    (setq ledger-copy-transaction-insert-blank-line-after t))
+    (setq ledger-copy-transaction-insert-blank-line-after t)
+    (setq ledger-reports
+          '(("this-month-bal" "%(binary) -f %(ledger-file) bal -b \"this month\" -e \"next month\" -S '-abs(total)'")
+            ("total-monthly-expenses" "%(binary) -f %(ledger-file) reg expenses -M -n")
+            ("bal" "%(binary) -f %(ledger-file) bal")
+            ("reg" "%(binary) -f %(ledger-file) reg")
+            ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
+            ("account" "%(binary) -f %(ledger-file) reg %(account)"))))
 
   (add-hook 'ledger-mode-hook 'personal-ledger-mode-defaults))
 
