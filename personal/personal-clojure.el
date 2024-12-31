@@ -9,6 +9,8 @@
   ;; Disable JVM optimization that omits the stack trace.
   (setq cider-clojure-cli-global-options "-J-XX:-OmitStackTraceInFastThrow")
 
+  (setq projectile--mode-line nil)
+
   (evil-define-key 'normal clojure-mode-map
     ")" 'sp-end-of-next-sexp)
   (modify-syntax-entry ?- "w" clojure-mode-syntax-table))
