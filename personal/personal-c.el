@@ -11,6 +11,10 @@
 (prelude-require-packages '(format-all))
 
 (with-eval-after-load 'cc-mode
+  (defun personal-c-mode-defaults ()
+    (hs-minor-mode +1)
+    (setq c-basic-offset 2)
+    (setq c-indent-level 2))
+
   (add-hook 'prelude-c-mode-common-hook
-            (lambda ()
-              (hs-minor-mode +1))))
+            'personal-c-mode-defaults))
