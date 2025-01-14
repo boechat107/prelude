@@ -59,6 +59,7 @@ installments."
     (setq ledger-reports
           '(("this-month-bal" "%(binary) -f %(ledger-file) bal -b \"this month\" -e \"next month\" -S '-abs(total)'")
             ("total-monthly-expenses" "%(binary) -f %(ledger-file) reg expenses -M -n")
+            ("bal-until-tomorrow" "%(binary) -f %(ledger-file) bal -e \"tomorrow\"")
             ("bal" "%(binary) -f %(ledger-file) bal")
             ("reg" "%(binary) -f %(ledger-file) reg")
             ("payee" "%(binary) -f %(ledger-file) reg @%(payee)")
