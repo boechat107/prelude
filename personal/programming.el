@@ -5,15 +5,16 @@
    idle-highlight-mode
    ;; Generate links to the repository from a buffer.
    git-link
-   quelpa
+   ;; quelpa
    ;; Required by copilot.
-   editorconfig))
+   ;; editorconfig
+   ))
 
-(quelpa
- '(copilot :fetcher github
-           :repo "zerolfx/copilot.el"
-           :branch "main"
-           :files ("dist" "*.el")))
+;; (quelpa
+;;  '(copilot :fetcher github
+;;            :repo "zerolfx/copilot.el"
+;;            :branch "main"
+;;            :files ("dist" "*.el")))
 
 
 (defun personal-prog-mode-defaults ()
@@ -21,6 +22,7 @@
   (setq auto-save-default nil)
   (require 'super-save)
   (super-save-mode -1)
+  (setq fill-column 80)
   ;; This makes the text completion case sensitive.
   ;; https://emacs.stackexchange.com/a/10838/31688
   (setq company-dabbrev-downcase nil)
@@ -29,9 +31,10 @@
   ;; https://evil.readthedocs.io/en/latest/faq.html#underscore-is-not-a-word-character
   (modify-syntax-entry ?_ "w")
   ;; Copilot configurations.
-  (define-key copilot-completion-map (kbd "<backtab>")
-              'copilot-accept-completion)
-  (define-key copilot-completion-map (kbd "C-x TAB")
-              'copilot-accept-completion-by-word))
+  ;; (define-key copilot-completion-map (kbd "<backtab>")
+  ;;             'copilot-accept-completion)
+  ;; (define-key copilot-completion-map (kbd "C-x TAB")
+  ;;             'copilot-accept-completion-by-word)
+  )
 
 (add-hook 'prelude-prog-mode-hook 'personal-prog-mode-defaults)
