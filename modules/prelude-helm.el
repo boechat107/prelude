@@ -33,6 +33,13 @@
 
 (prelude-require-packages '(helm helm-projectile))
 
+;(add-hook
+; 'after-init-hook
+; (lambda ()
+;   (require 'helm-config)
+;   (helm-mode 1)))
+
+;(require 'helm-config)
 (require 'helm-projectile)
 
 (when (executable-find "curl")
