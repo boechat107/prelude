@@ -1,7 +1,25 @@
 (require 'prelude-programming)
 
+<<<<<<< HEAD
 ;; Similar to vim-illuminate
 (prelude-require-packages '(idle-highlight-mode))
+=======
+(prelude-require-packages
+ '(;; Similar to vim-illuminate
+   idle-highlight-mode
+   ;; Generate links to the repository from a buffer.
+   git-link
+   quelpa
+   ;; Required by copilot.
+   editorconfig))
+
+(quelpa
+ '(copilot :fetcher github
+           :repo "zerolfx/copilot.el"
+           :branch "main"
+           :files ("dist" "*.el")))
+
+>>>>>>> 56adc9a... Add package to generate links to the repository from buffers
 
 (defun personal-prog-mode-defaults ()
   ;; Disable auto-saving features
