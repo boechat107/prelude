@@ -21,17 +21,17 @@
 ;              '(flycheck-python-mypy-executable . "./venv/bin/mypy"))
 
 (use-package python-black
-  :demand t
+  :ensure t
   :after python
   :hook (python-mode . python-black-on-save-mode-enable-dwim))
 
 (use-package python-isort
-  :demand t
+  :ensure t
   :after python
   :hook (python-mode . python-isort-on-save-mode))
 
 (use-package mise
-  :demand t
+  :ensure t
   :after python
   :hook (python-mode . mise-mode))
 
