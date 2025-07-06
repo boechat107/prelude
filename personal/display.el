@@ -1,4 +1,4 @@
-(set-face-attribute 'default nil :font "Ricty Diminished 10" :weight 'bold)
+(set-face-attribute 'default nil :font "Hack 9")
 
 (prelude-require-packages '(neotree))
 (global-set-key [f8] 'neotree-toggle)
