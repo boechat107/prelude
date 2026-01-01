@@ -1,4 +1,4 @@
-(prelude-require-packages '(quelpa jinx perspective))
+(prelude-require-packages '(quelpa jinx))
 
 ;; Optimizations suggested in the following discussion:
 ;; https://emacs.stackexchange.com/questions/12086/high-cpu-memory-usage-and-abnormally-large-savehist-file
@@ -42,13 +42,20 @@
   (transient-append-suffix 'magit-diff-refresh "-b"
     '("-e" "Ignore space at EOL" ("" "--ignore-space-at-eol"))))
 
-(use-package perspective
-  :bind
-  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
-  :custom
-  (persp-mode-prefix-key (kbd "C-x x"))  ; pick your own prefix key here
-  (persp-state-default-file "~/Codes/perspective.el")
+(use-package activities
+  :ensure t
   :init
-  (persp-mode)
+  (activities-mode)
+  ;; Prevent `edebug' default bindings from interfering.
+  (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+  :bind
+  (("C-x x a" . activities-resume)
+   ("C-x x s" . activities-suspend)
+   ("C-x x RET" . activities-switch)))
+
+(use-package gptel
+  :ensure t
+  ;; We need to use config instead of ":custom" because we need gptel to be
+  ;; loaded already since we use the function "gptel-make-gh-copilot".
   :config
-  (add-hook 'kill-emacs-hook #'persp-state-save))
+  (setq gptel-backend (gptel-make-gh-copilot "Copilot")))
