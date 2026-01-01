@@ -35,8 +35,17 @@
   :after python
   :hook (python-mode . mise-mode))
 
+(use-package lsp-mode
+  :ensure t
+  :hook (python-mode . lsp)
+  :custom
+  (lsp-pylsp-plugins-flake8-enabled t)
+  (lsp-pylsp-plugins-pycodestyle-enabled nil)
+  ;; Disable the warning messages of the type D.
+  (lsp-pylsp-plugins-pydocstyle-enabled nil))
+
 (defun personal-python-mode-defaults ()
-  (pyvenv-mode +1)
+  ;(pyvenv-mode +1)
   (hs-minor-mode +1)
   (anaconda-mode -1)
   (setq python-shell-interpreter "ipython"
