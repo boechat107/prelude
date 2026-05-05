@@ -44,6 +44,10 @@
   ;; Disable the warning messages of the type D.
   (lsp-pylsp-plugins-pydocstyle-enabled nil))
 
+(add-hook 'python-mode-hook
+          (lambda ()
+            (add-to-list 'flycheck-disabled-checkers 'python-mypy)))
+
 (defun personal-python-mode-defaults ()
   ;(pyvenv-mode +1)
   (hs-minor-mode +1)
