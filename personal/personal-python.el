@@ -7,9 +7,13 @@
 ;; 2. Call "pyvenv-activate" and choose the project's venv folder.
 ;; 3. If a Python file is already open, reload it with "revert-buffer".
 ;; 4. Check if you can see the file path at the top of the folder (an
-;; indication that the LSP is running).
+;;    indication that the LSP is running).
 ;;
 ;; "lsp-workspace-restart" is handy after installing libraries in the venv.
+;;
+;; Pyright must be available on PATH: pip install pyright (per-venv) or
+;; npm install -g pyright (global). With mise, activate the venv first so
+;; lsp-pyright picks the correct interpreter automatically.
 
 (require 'prelude-python)
 
@@ -17,8 +21,6 @@
 ;; https://emacs.stackexchange.com/a/10989/31688
 ; (add-to-list 'safe-local-variable-values
 ;              '(flycheck-python-flake8-executable . "./venv/bin/flake8"))
-; (add-to-list 'safe-local-variable-values
-;              '(flycheck-python-mypy-executable . "./venv/bin/mypy"))
 
 (use-package python-black
   :ensure t
@@ -35,37 +37,28 @@
   :after python
   :hook (python-mode . mise-mode))
 
-(use-package lsp-mode
+(use-package lsp-pyright
   :ensure t
-  :hook (python-mode . lsp)
+  :after python
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp-deferred)))
   :custom
-  (lsp-pylsp-plugins-flake8-enabled t)
-  (lsp-pylsp-plugins-pycodestyle-enabled nil)
-  ;; Disable the warning messages of the type D.
-  (lsp-pylsp-plugins-pydocstyle-enabled nil))
-
-(add-hook 'python-mode-hook
-          (lambda ()
-            (add-to-list 'flycheck-disabled-checkers 'python-mypy)))
+  ;; "basic" catches common type errors without strict mode noise.
+  ;; Switch to "strict" for fully annotated codebases.
+  (lsp-pyright-typechecking-mode "basic")
+  ;; Flymake and flycheck are independent systems — using flymake for pyright
+  ;; prevents lsp-ui from restarting flycheck when diagnostics arrive.
+  (lsp-diagnostics-provider :flymake))
 
 (defun personal-python-mode-defaults ()
-  ;(pyvenv-mode +1)
   (hs-minor-mode +1)
   (anaconda-mode -1)
+  (flycheck-select-checker 'python-flake8)
   (setq python-shell-interpreter "ipython"
-        ;; https://emacs.stackexchange.com/a/37876/31688
         python-shell-interpreter-args "--simple-prompt --pprint")
   (evil-define-key 'normal python-mode-map "K" 'lsp-ui-doc-show)
   (evil-define-key 'normal python-mode-map "gd" 'lsp-find-definition)
-  ;; We can jump back to the code using the definition.
-  ;; Ref.: https://github.com/emacs-evil/evil/issues/1354
-  ;(evil-set-command-property 'anaconda-mode-find-definitions :jump t)
-  ;(evil-set-command-property 'anaconda-mode-find-assignments :jump t)
   (message "Personal Python default fn executed"))
 
 (add-hook 'python-mode-hook 'personal-python-mode-defaults 91)
-;; Enables function signature in the echo area.
-;; https://github.com/pythonic-emacs/anaconda-mode#eldoc
-;(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
-(add-hook 'python-mode-hook #'lsp-deferred)
